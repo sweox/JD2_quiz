@@ -55,9 +55,6 @@ public class QuizController {
             }
         }
 
-        // create participantAnswer object
-        ParticipantAnswer participantAnswer = new ParticipantAnswer();
-
         // get Session
         HttpSession session = request.getSession();
         // set attributes to the session
@@ -72,31 +69,10 @@ public class QuizController {
         model.addAttribute("numberQuestion", numberQuestion);
         model.addAttribute("question", questions.get(numberQuestion));
         model.addAttribute("viewNumberQuestion", ++numberQuestion);
-        model.addAttribute("participantAnswer", participantAnswer);
 
         return "question";
     }
 
-//    @RequestMapping(value = "/beginQuiz", method = RequestMethod.GET)
-//    public String beginQuiz(int idQuiz,
-//                            Participant participant,
-//                            Model model,
-//                            HttpServletRequest request) {
-//
-//        List<Quiz> allQuiz = quizService.getAllQuiz();
-//        List<Question> questions = null;
-//        for (Quiz quiz : allQuiz) {
-//            if (quiz.getIdQuiz() == idQuiz) {
-//                questions = quiz.getQuestions();
-//            }
-//        }
-//        int numberQuestion = 0;
-//        model.addAttribute("numberQuestion", numberQuestion);
-//        model.addAttribute("question", questions.get(numberQuestion));
-//
-////        return "question";
-//        return nextQuestion(idQuiz, participant, 0, model);
-//    }
 
     @RequestMapping("/nextQuestion")
     public String nextQuestion(@RequestParam("idAnswer") int idAnswer,
@@ -113,10 +89,18 @@ public class QuizController {
         int numberQuestion = (int) session.getAttribute("numberQuestion");
 
         // process all Questions from List
-        if (numberQuestion < questions.size() - 1) {
-
+        if (numberQuestion < questions.size()) {
+            System.out.println("==================" + numberQuestion);
             // inc numberQuestion for next Question
             ++numberQuestion;
+
+            // create and add all to saveParticipantAnswer
+            ParticipantAnswer participantAnswer = new ParticipantAnswer();
+            participantAnswer.setParticipant(participant);
+            participantAnswer.setQuiz(participant.getQuiz());
+            participantAnswer.setQuestion(questions.get(numberQuestion));
+            participantAnswer.setAnswer(quizService.getAnswer(idAnswer));
+            quizService.saveParticipantAnswer(participantAnswer);
 
             // set Attribute number next Question into session
             session.setAttribute("numberQuestion", numberQuestion);

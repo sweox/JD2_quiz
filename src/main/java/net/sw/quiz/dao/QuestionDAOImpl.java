@@ -18,6 +18,6 @@ public class QuestionDAOImpl implements QuestionDAO {
 
 //        currentSession.createQuery("select qs from Quiz q join Answer qs");
 
-        return null;
+        return null;  //todo: null
     }
 }

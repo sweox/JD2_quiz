@@ -34,7 +34,8 @@ https://stackoverflow.com/questions/8292940/how-to-set-session-attribute-in-java
 ============= GIT =================
 https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add
 
-
+============= Maven =================
+http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html
 
 
 
