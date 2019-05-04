@@ -1,0 +1,48 @@
+
+===============================  Hbernate / JPA =================
+JOIN clauses in JPQL require a mapped association
+https://thoughts-on-java.org/best-practices-many-one-one-many-associations-mappings/
+https://www.dofactory.com/sql/group-by
+https://www.w3schools.com/sql/sql_groupby.asp
+https://stackoverflow.com/questions/17431312/difference-between-join-and-join-fetch-in-hibernate
+https://www.javaspringclub.com/hibernate-unidirectional-many-to-one-mapping/
+https://www.objectdb.com/
+Hibernate Tips: More than 70 solutions to common Hibernate problems
+http://websystique.com/hibernate/hibernate-many-to-one-unidirectional-annotation-example/
+
+https://developer.jboss.org/wiki/OpenSessionInView
+https://stackoverflow.com/questions/23877900/spring-opensessioninviewfilter-with-transactional-annotation
+
+========================= DB ================
+https://medium.com/@fbnlsr/the-table-naming-dilemma-singular-vs-plural-dc260d90aaff
+https://stackoverflow.com/questions/338156/table-naming-dilemma-singular-vs-plural-names
+https://softwareengineering.stackexchange.com/questions/290646/why-does-convention-say-db-table-names-should-be-singular-but-restful-resources
+https://stackoverflow.com/questions/6845772/rest-uri-convention-singular-or-plural-name-of-resource-while-creating-it
+
+
+
+============= REST ==================
+https://stackoverflow.com/questions/30464782/how-to-maintain-bi-directional-relationships-with-spring-data-rest-and-jpa/30474303#30474303
+
+===== Example quiz ==========
+https://www.edureka.co/blog/creating-an-online-quiz-application-using-jsp-servlet/
+
+
+=============== Servlet ================
+https://stackoverflow.com/questions/8292940/how-to-set-session-attribute-in-java
+
+============= GIT =================
+https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add
+
+
+
+
+
+
+
+
+
+
+
+
+
