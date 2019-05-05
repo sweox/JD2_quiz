@@ -40,6 +40,9 @@ http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism
 ============= thymeleaf =================
 https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#the-controller
 
+=============StackOverflow ===============
+https://stackoverflow.com/questions/2400955/how-to-store-java-date-to-mysql-datetime
+
 
 
 

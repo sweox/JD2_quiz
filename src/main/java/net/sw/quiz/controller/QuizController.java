@@ -5,12 +5,13 @@ import net.sw.quiz.entity.ParticipantAnswer;
 import net.sw.quiz.entity.Question;
 import net.sw.quiz.entity.Quiz;
 import net.sw.quiz.service.QuizService;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -40,8 +41,7 @@ public class QuizController {
     @RequestMapping(value = "/processParticipantQuiz", method = RequestMethod.POST)
     public String processParticipantQuizBeginTest(@ModelAttribute("newParticipant") Participant participant,
                                                   @RequestParam("idQuiz") int idQuiz,
-                                                  HttpServletRequest request,
-                                                  Model model) {
+                                                  HttpServletRequest request) {
 
         List<Quiz> allQuiz = quizService.getAllQuiz();
 
@@ -88,7 +88,7 @@ public class QuizController {
 
             return "question";
         } else {
-            return "redirect:/finish";
+            return "redirect:/allResultQuiz";
         }
     }
 
@@ -120,12 +120,19 @@ public class QuizController {
     }
 
 
-    @RequestMapping(value = "finish")
-    public String resultQuiz() {
+    @RequestMapping(value = "/allResultQuiz")
+    public String allResultQuiz() {
 
 
 
-        return "finish";
+        return "all-result-quiz";
     }
+
+    @RequestMapping(value = "/selectedResult")
+    public String processSelectedResult() {
+
+        return "selected-result";
+    }
+
 
 }

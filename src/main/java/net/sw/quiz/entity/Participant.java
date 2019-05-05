@@ -1,8 +1,7 @@
 package net.sw.quiz.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -25,6 +24,7 @@ public class Participant {
     private Quiz quiz;
 
     @Column(name = "quiz_time_start")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date quizTimeStart;
 
     @Column(name = "quiz_time_end")
