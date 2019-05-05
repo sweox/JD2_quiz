@@ -37,6 +37,8 @@ https://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-
 ============= Maven =================
 http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html
 
+============= thymeleaf =================
+https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#the-controller
 
 
 

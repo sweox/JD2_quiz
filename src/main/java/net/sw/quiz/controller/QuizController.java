@@ -65,19 +65,36 @@ public class QuizController {
         int numberQuestion = 0;
         session.setAttribute("numberQuestion", numberQuestion);
 
-        // add attribute JSP for begin test
-        model.addAttribute("numberQuestion", numberQuestion);
-        model.addAttribute("question", questions.get(numberQuestion));
-        model.addAttribute("viewNumberQuestion", ++numberQuestion);
-
-        return "question";
+        return "redirect:/nextQuestion";
     }
 
-
-    @RequestMapping("/nextQuestion")
-    public String nextQuestion(@RequestParam("idAnswer") int idAnswer,
-                               HttpServletRequest request,
+    @RequestMapping(value = "/nextQuestion", method = RequestMethod.GET)
+    public String nextQuestion(HttpServletRequest request,
                                Model model) {
+
+        // get Session
+        HttpSession session = request.getSession();
+        // get number of question from session
+        int numberQuestion = (int) session.getAttribute("numberQuestion");
+        // get List Question from session
+        List<Question> questions = (List<Question>) session.getAttribute("questions");
+
+        // check end of questions List
+        if (numberQuestion < questions.size()) {
+            // add attribute JSP for begin test
+            model.addAttribute("numberQuestion", numberQuestion);
+            model.addAttribute("question", questions.get(numberQuestion));
+            model.addAttribute("viewNumberQuestion", ++numberQuestion);
+
+            return "question";
+        } else {
+            return "redirect:/finish";
+        }
+    }
+
+    @RequestMapping(value = "/processQuestion", method = RequestMethod.POST)
+    public String processQuestion(@RequestParam(value = "idAnswer") int idAnswer,
+                                  HttpServletRequest request) {
 
         // get session
         HttpSession session = request.getSession();
@@ -88,34 +105,27 @@ public class QuizController {
         // get number of question from session
         int numberQuestion = (int) session.getAttribute("numberQuestion");
 
-        // process all Questions from List
-        if (numberQuestion < questions.size()) {
-            System.out.println("==================" + numberQuestion);
-            // inc numberQuestion for next Question
-            ++numberQuestion;
+        // create and add all to saveParticipantAnswer
+        ParticipantAnswer participantAnswer = new ParticipantAnswer();
+        participantAnswer.setParticipant(participant);
+        participantAnswer.setQuiz(participant.getQuiz());
+        participantAnswer.setQuestion(questions.get(numberQuestion));
+        participantAnswer.setAnswer(quizService.getAnswer(idAnswer));
+        quizService.saveParticipantAnswer(participantAnswer);
 
-            // create and add all to saveParticipantAnswer
-            ParticipantAnswer participantAnswer = new ParticipantAnswer();
-            participantAnswer.setParticipant(participant);
-            participantAnswer.setQuiz(participant.getQuiz());
-            participantAnswer.setQuestion(questions.get(numberQuestion));
-            participantAnswer.setAnswer(quizService.getAnswer(idAnswer));
-            quizService.saveParticipantAnswer(participantAnswer);
+        // increase number question
+        session.setAttribute("numberQuestion", ++numberQuestion);
 
-            // set Attribute number next Question into session
-            session.setAttribute("numberQuestion", numberQuestion);
+        return "redirect:/nextQuestion";
+    }
 
-            // add attribute for JSP
-            model.addAttribute("numberQuestion", numberQuestion);
-            model.addAttribute("question", questions.get(numberQuestion));
-            model.addAttribute("viewNumberQuestion", ++numberQuestion);
-            model.addAttribute("quantityAnswer", questions.size());
 
-            return "question";
-        } else {
+    @RequestMapping(value = "finish")
+    public String resultQuiz() {
 
-            return "finish";
-        }
+
+
+        return "finish";
     }
 
 }

@@ -17,7 +17,7 @@
 <body>
 
 
-<form:form action="nextQuestion" modelAttribute="question" method="post">
+<form:form action="processQuestion" modelAttribute="question" method="post">
 
     <div id="wrapper">
         <div id="header">
